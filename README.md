@@ -1,0 +1,2 @@
+# global
+Global maven settings
