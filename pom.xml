@@ -10,9 +10,81 @@
     <name>Global</name>
     <description>Global settings for all my projects</description>
 
+    <inceptionYear>2022</inceptionYear>
+
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>Madzi</name>
+        </developer>
+    </developers>
+
+    <url>https://github.com/Madzi/global</url>
+
+    <scm>
+        <url>https://github.com/Madzi/global</url>
+        <connection>scm:git:git@github.com:Madzi/global.git</connection>
+        <developerConnection>scm:git:git@github.com:Madzi/global.git</developerConnection>
+    </scm>
+
     <properties>
         <encoding>UTF-8</encoding>
+        <project.build.sourceEncoding>${encoding}</project.build.sourceEncoding>
         <java.version>17</java.version>
         <java.vendor>grl</java.vendor>
     </properties>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <artifactId>maven-site-plugin</artifactId>
+                    <version>4.0.0-M1</version>
+                </plugin>
+                <plugin>
+                    <groupId>com.amashchenko.maven.plugin</groupId>
+                    <artifactId>gitflow-maven-plugin</artifactId>
+                    <version>1.18.0</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+    <profiles>
+        <profile>
+            <id>gitflow-support</id>
+            <activation>
+                <file>
+                    <exists>.git</exists>
+                </file>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.amashchenko.maven.plugin</groupId>
+                        <artifactId>gitflow-maven-plugin</artifactId>
+                        <configuration>
+                            <gitFlowConfig>
+                                <productionBranch>master</productionBranch>
+                                <developmentBranch>develop</developmentBranch>
+                                <featureBranchPrefix>feature-</featureBranchPrefix>
+                                <releaseBranchPrefix>release-</releaseBranchPrefix>
+                                <hotfixBranchPrefix>hotfix-</hotfixBranchPrefix>
+                                <supportBranchPrefix>support-</supportBranchPrefix>
+                                <versionTagPrefix>v</versionTagPrefix>
+                                <origin>origin</origin>
+                            </gitFlowConfig>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>
